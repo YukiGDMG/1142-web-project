@@ -387,3 +387,30 @@ body {
 #contents.subpage-green .info-box { border-left-color: #15B59B; }
 #contents.subpage-green .info-box dt { color: #15B59B; }
 #contents.subpage-green h2 { color: #15B59B; border-left-color: #15B59B; }
+
+/* =====
+	測試
+   ===== */
+
+#header {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 35px;
+    background-color: #333 !important;
+    z-index: 99999 !important;
+}
+
+#nav {
+    position: fixed !important;
+    top: 65px;
+    left: calc(50% - 370px) !important; 
+    width: 190px !important;
+    z-index: 9999 !important;
+    float: none !important;
+}
+
+#wrapper {
+    margin-top: 65px !important;
+}
