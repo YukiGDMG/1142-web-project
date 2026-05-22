@@ -7,81 +7,58 @@
 		<script type="text/javascript" src="jquery-1.10.2.min.js"></script>
 		<script type="text/javascript">
 			$(function(){
-				$("ul.subs").hide();
-				var menuId = sessionStorage.getItem("openMenu");
-				switch(menuId){
-					case "north": $("#north").next("ul.subs").show(); break;
-					case "center": $("#center").next("ul.subs").show(); break;
-					case "south": $("#south").next("ul.subs").show(); break;
-					case "east": $("#east").next("ul.subs").show(); break;
-				}
-				$("div.main").click(function(){
-					$("ul.subs").slideUp();
-					$("div.main").removeClass("open");
-					if($("+ul",this).css("display")=="none"){
-						$("+ul",this).slideDown();
-						$(this).addClass("open");
+				// 🪄 核心魔法：動態載入共用 html，載入完畢後才執行選單記憶與點擊邏輯
+				$("#shared-layout").load("layout.html", function() {
+					
+					// 1. 因為組員原本的排版結構 nav 必須在 wrapper 肚子裡，我們用 JS 自動把它搬進去
+					$("#nav").prependTo("#wrapper");
+
+					// 2. 隱藏所有子選單
+					$("ul.subs").hide();
+					
+					// 3. 讀取並展開當前被記憶的選單狀態
+					var menuId = sessionStorage.getItem("openMenu");
+					if (menuId) {
+						$("#" + menuId).next("ul.subs").show();
+						$("#" + menuId).addClass("open");
 					}
-					var menuId = $(this).attr("id");
-        			sessionStorage.setItem("openMenu", menuId);
-				}).mouseover(function () {
-					$(this).addClass("rollover");
-				}).mouseout(function(){
-					$(this).removeClass("rollover");
+					
+					// 4. 綁定選單點擊展開/縮合事件
+					$("div.main").click(function(){
+						var $nextUl = $(this).next("ul");
+						var isVisible = $nextUl.is(":visible");
+						
+						// 全部收起來
+						$("ul.subs").slideUp();
+						$("div.main").removeClass("open");
+						
+						// 如果本來是關閉的，就把它打開
+						if(!isVisible){
+							$nextUl.slideDown();
+							$(this).addClass("open");
+							var menuId = $(this).attr("id");
+							sessionStorage.setItem("openMenu", menuId);
+						} else {
+							// 如果點擊同一個選單收起，清空記憶
+							sessionStorage.removeItem("openMenu");
+						}
+					});
+
+					// 5. 綁定滑鼠懸停變色效果
+					$("div.main").mouseover(function () {
+						$(this).addClass("rollover");
+					}).mouseout(function(){
+						$(this).removeClass("rollover");
+					});
 				});
 			});
 		</script>
 	</head>
 	<body>
-		<div id="header">
-			<div id="header-inner">
-				<div id="logo"><a href="index.html"><img src="images/logo.png" /></a></div>
-				<ul id="header-nav">
-					<li><a href="test.html"><img src="images/about.png" /></a></li>
-					<li><a href="test.html"><img src="images/contact.png" /></a></li>
-					<li><a href="test.html"><img src="images/sitemap.png" /></a></li>
-				</ul>
-			</div>
-		</div>
+
+		<div id="shared-layout"></div>
+
 		<div id="wrapper" class="clearfix">
-			<div id="nav">
-				<ul> 
-					<li class="color-blue">
-						<div class="main" id="north">北部景點</div>
-						<ul class="subs"> 
-							<li><a href="jiufen.html">九份老街</a></li> 
-							<li><a href="danshui.html">淡水漁人碼頭</a></li> 
-							<li><a href="yangmingshan.html">陽明山國家公園</a></li> 
-							<li><a href="pingxi.html">平溪天燈</a></li>
-						</ul> 
-					</li> 
-					<li class="color-red" id="center">
-						<div class="main">中部景點</div>
-						<ul class="subs"> 
-							<li><a href="test.html">日月潭</a></li> 
-							<li><a href="test.html">清境農場</a></li> 
-							<li><a href="test.html">合歡山</a></li> 
-							<li><a href="test.html">彩虹眷村</a></li> 
-						</ul> 
-					</li>
-					<li class="color-yellow" id="south">
-						<div class="main">南部景點</div>
-						<ul class="subs"> 
-							<li><a href="test.html">墾丁國家公園</a></li> 
-							<li><a href="test.html">駁二藝術特區</a></li> 
-							<li><a href="test.html">旗津燈塔</a></li> 
-						</ul> 
-					</li>
-					<li class="color-green" id="east">
-						<div class="main">東部景點</div>
-						<ul class="subs"> 
-							<li><a href="test.html">太魯閣峽谷</a></li> 
-							<li><a href="test.html">七星潭</a></li> 
-							<li><a href="test.html">伯朗大道</a></li> 
-						</ul> 
-					</li> 
-				</ul>
-			</div>
 
 			<div id="contents" class="subpage subpage-blue">
 				<p class="breadcrumb"><a href="index.html">首頁</a> ＞ 北部景點 ＞ 淡水漁人碼頭</p>
