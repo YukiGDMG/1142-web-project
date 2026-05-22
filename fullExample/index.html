@@ -1,4 +1,3 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="zh-TW">
 	<head>
@@ -9,25 +8,12 @@
 		<script type="text/javascript">
 			$(function(){
 				$("ul.subs").hide();
-				//開啟之前開啟的選單
 				var menuId = sessionStorage.getItem("openMenu");
 				switch(menuId){
-
-					case "north":
-						$("#north").next("ul.subs").show();
-						break;
-
-					case "center":
-						$("#center").next("ul.subs").show();
-						break;
-
-					case "south":
-						$("#south").next("ul.subs").show();
-						break;
-
-					case "east":
-						$("#east").next("ul.subs").show();
-						break;
+					case "north": $("#north").next("ul.subs").show(); break;
+					case "center": $("#center").next("ul.subs").show(); break;
+					case "south": $("#south").next("ul.subs").show(); break;
+					case "east": $("#east").next("ul.subs").show(); break;
 				}
 				$("div.main").click(function(){
 					$("ul.subs").slideUp();
@@ -36,10 +22,8 @@
 						$("+ul",this).slideDown();
 						$(this).addClass("open");
 					}
-					// 儲存目前開啟的選單ID到sessionStorage
 					var menuId = $(this).attr("id");
         			sessionStorage.setItem("openMenu", menuId);
-
 				}).mouseover(function () {
 					$(this).addClass("rollover");
 				}).mouseout(function(){
@@ -51,16 +35,11 @@
 	<body>
 		<div id="header">
 			<div id="header-inner">
-				<div id="logo">
-					<img src="images/logo.png" />
-				</div>
+				<div id="logo"><img src="images/logo.png" /></div>
 				<ul id="header-nav">
-					<li><a href="test.html">
-						<img src="images/about.png" /></a></li>
-					<li><a href="test.html">
-						<img src="images/contact.png" /></a></li>
-					<li><a href="test.html">
-						<img src="images/sitemap.png" /></a></li>
+					<li><a href="test.html"><img src="images/about.png" /></a></li>
+					<li><a href="test.html"><img src="images/contact.png" /></a></li>
+					<li><a href="test.html"><img src="images/sitemap.png" /></a></li>
 				</ul>
 			</div>
 		</div>
@@ -70,8 +49,8 @@
 					<li class="color-blue">
 						<div class="main" id="north">北部景點</div>
 						<ul class="subs"> 
-							<li><a href="index.jsp?page=jiufen">九份老街</a></li> 
-							<li><a href="index.jsp?page=danshui">淡水漁人碼頭</a></li> 
+							<li><a href="jiufen.html">九份老街</a></li> 
+							<li><a href="danshui.html">淡水漁人碼頭</a></li> 
 							<li><a href="test.html">陽明山國家公園</a></li> 
 							<li><a href="test.html">平溪天燈</a></li>
 						</ul> 
@@ -105,22 +84,9 @@
 			</div>
 
 			<div id="contents">
-				<%
-					String pageParam = request.getParameter("page");
-					// 超連結傳遞的參數
-					String pageToInclude = "home.jsp";
-					//首頁為home.jsp
-
-					if(pageParam != null){
-						//如果有傳遞參數
-						pageToInclude = pageParam + ".jsp";
-						//載入對應的jsp檔案(同參數名稱)
-					}
-				%>
-
-				<jsp:include page="<%= pageToInclude %>" />
-				<!-- 將載入的jsp檔案整個放進來 -->
-
+				<img id="canva" src="images/taiwan.jpg" />
+				<h1>JOURNEY</h1>
+				<p>台灣，一座充滿魅力的美麗寶島。從北到南、從山到海，每一個角落都蘊藏著獨特的風景與故事。無論是壯麗的自然景觀、深厚的人文古蹟，還是令人難忘的在地美食，都等待著您親自前來探索與體驗。</p>
 			</div>
 
 		</div>

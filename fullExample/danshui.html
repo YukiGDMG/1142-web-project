@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+	<head>
+		<meta charset="utf-8" />
+		<title>JOURNEY － 淡水漁人碼頭</title>
+		<link rel="stylesheet" href="style.css" type="text/css" />
+		<script type="text/javascript" src="jquery-1.10.2.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$("ul.subs").hide();
+				var menuId = sessionStorage.getItem("openMenu");
+				switch(menuId){
+					case "north": $("#north").next("ul.subs").show(); break;
+					case "center": $("#center").next("ul.subs").show(); break;
+					case "south": $("#south").next("ul.subs").show(); break;
+					case "east": $("#east").next("ul.subs").show(); break;
+				}
+				$("div.main").click(function(){
+					$("ul.subs").slideUp();
+					$("div.main").removeClass("open");
+					if($("+ul",this).css("display")=="none"){
+						$("+ul",this).slideDown();
+						$(this).addClass("open");
+					}
+					var menuId = $(this).attr("id");
+        			sessionStorage.setItem("openMenu", menuId);
+				}).mouseover(function () {
+					$(this).addClass("rollover");
+				}).mouseout(function(){
+					$(this).removeClass("rollover");
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div id="header">
+			<div id="header-inner">
+				<div id="logo"><img src="images/logo.png" /></div>
+				<ul id="header-nav">
+					<li><a href="test.html"><img src="images/about.png" /></a></li>
+					<li><a href="test.html"><img src="images/contact.png" /></a></li>
+					<li><a href="test.html"><img src="images/sitemap.png" /></a></li>
+				</ul>
+			</div>
+		</div>
+		<div id="wrapper" class="clearfix">
+			<div id="nav">
+				<ul> 
+					<li class="color-blue">
+						<div class="main" id="north">北部景點</div>
+						<ul class="subs"> 
+							<li><a href="jiufen.html">九份老街</a></li> 
+							<li><a href="danshui.html">淡水漁人碼頭</a></li> 
+							<li><a href="test.html">陽明山國家公園</a></li> 
+							<li><a href="test.html">平溪天燈</a></li>
+						</ul> 
+					</li> 
+					<li class="color-red" id="center">
+						<div class="main">中部景點</div>
+						<ul class="subs"> 
+							<li><a href="test.html">日月潭</a></li> 
+							<li><a href="test.html">清境農場</a></li> 
+							<li><a href="test.html">合歡山</a></li> 
+							<li><a href="test.html">彩虹眷村</a></li> 
+						</ul> 
+					</li>
+					<li class="color-yellow" id="south">
+						<div class="main">南部景點</div>
+						<ul class="subs"> 
+							<li><a href="test.html">墾丁國家公園</a></li> 
+							<li><a href="test.html">駁二藝術特區</a></li> 
+							<li><a href="test.html">旗津燈塔</a></li> 
+						</ul> 
+					</li>
+					<li class="color-green" id="east">
+						<div class="main">東部景點</div>
+						<ul class="subs"> 
+							<li><a href="test.html">太魯閣峽谷</a></li> 
+							<li><a href="test.html">七星潭</a></li> 
+							<li><a href="test.html">伯朗大道</a></li> 
+						</ul> 
+					</li> 
+				</ul>
+			</div>
+
+			<div id="contents" class="subpage subpage-blue">
+				<p class="breadcrumb"><a href="index.html">首頁</a> ＞ 北部景點 ＞ 淡水漁人碼頭</p>
+				<h1>淡水漁人碼頭</h1>
+				<p class="subtitle">情人橋畔的浪漫夕陽，北台灣最美海港</p>
+				<img id="canva" src="images/danshui.jpg" />
+				<p class="intro">淡水漁人碼頭位於新北市淡水區淡水河出海口右岸，原是一個傳統的小型漁港，經過多年的規劃與整建後，搖身一變成為北台灣最具代表性的觀光休閒漁港。雪白優雅的情人橋橫跨港灣，搭配壯麗的夕陽餘暉與徐徐海風，使這裡成為情侶約會、家庭出遊與攝影愛好者最喜愛的浪漫景點。傍晚時分，霞光將整片海面染成金黃，是台灣公認最美的夕陽景觀之一。</p>
+			
+				<dl class="info-box">
+					<dt>地　　址</dt>
+					<dd>新北市淡水區觀海路 199 號</dd>
+					<dt>交通方式</dt>
+					<dd>搭乘捷運淡水信義線至「淡水站」，轉乘紅 26 公車或藍色公路客運至漁人碼頭站；亦可從淡水老街搭乘渡輪前往，航程約 10 分鐘。</dd>
+					<dt>建議停留</dt>
+					<dd>約 2 ～ 4 小時</dd>
+					<dt>最佳造訪時間</dt>
+					<dd>傍晚至夜間，欣賞夕陽與夜景最為迷人</dd>
+				</dl>
+			
+				<h2>景點特色</h2>
+				<div class="highlight-item">
+					<h3>1. 情人橋</h3>
+					<p>漁人碼頭最具代表性的地標，全長 164.9 公尺，造型如同一艘揚帆出海的白色帆船，跨越港區連接觀光漁市與木棧道。夜晚搭配燈光秀，七彩變換的橋身倒映水面，浪漫指數爆表，是情侶必訪的拍照聖地。</p>
+				</div>
+				<div class="highlight-item">
+					<h3>2. 情人塔</h3>
+					<p>高達 100 公尺的旋轉觀景塔，搭乘約 6 分鐘可一邊上升一邊 360 度旋轉，將淡水河口、觀音山與大屯山美景盡收眼底。是俯瞰整個漁人碼頭最佳的制高點。</p>
+				</div>
+				<div class="highlight-item">
+					<h3>3. 木棧道與夕陽</h3>
+					<p>沿著港邊延伸的木棧道全長約 320 公尺，是欣賞夕陽的最佳位置。傍晚時分坐在棧道旁，看著漁船歸航、霞光滿天，是淡水最經典的浪漫畫面。沿途還有許多街頭藝人表演，氣氛悠閒愜意。</p>
+				</div>
+			</div>
+
+		</div>
+		<div id="footer">
+			<div id="footer-inner">Copyright © 2014 MdN Department All Right Reserved.</div>
+		</div>
+	</body>
+</html>
