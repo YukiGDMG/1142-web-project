@@ -1,7 +1,7 @@
 <div id="header">
     <div id="header-inner">
         <div id="logo">
-            <a href="index.html"><img src="images/logo.png" /></a>
+            <a href="index.html#home-back"><img src="images/logo.png" /></a>
         </div>
         <ul id="header-nav">
             <li><a href="test.html"><img src="images/about.png" /></a></li>
@@ -22,7 +22,6 @@
                 <li><a href="pingxi.html">平溪天燈</a></li>
             </ul> 
         </li> 
-        
         <li class="color-red">
             <div class="main" id="center">中部景點</div>
             <ul class="subs"> 
@@ -32,7 +31,6 @@
                 <li><a href="rainbow.html">彩虹眷村</a></li> 
             </ul> 
         </li>
-        
         <li class="color-yellow">
             <div class="main" id="south">南部景點</div>
             <ul class="subs"> 
@@ -41,7 +39,6 @@
                 <li><a href="cijin.html">旗津燈塔</a></li> 
             </ul> 
         </li>
-        
         <li class="color-green">
             <div class="main" id="east">東部景點</div>
             <ul class="subs"> 
@@ -52,3 +49,16 @@
         </li> 
     </ul>
 </div>
+
+<script type="text/javascript">
+    $(function(){
+        if (window.location.hash === "#home-back") {
+            history.replaceState(null, document.title, window.location.pathname);
+            $("ul.subs:visible").slideUp(500);
+            setTimeout(function() {
+                $("div.main").removeClass("open");
+                sessionStorage.removeItem("openMenu");
+            }, 500); 
+        }
+    });
+</script>
